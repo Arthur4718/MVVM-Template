@@ -10,6 +10,12 @@
         android:name="com.devarthur.mvvmtemplate.ui.weather.current.CurrentWeatherFragment"
         android:label="current_weather_fragment"
         tools:layout="@layout/current_weather_fragment" />
+
+    <fragment
+        android:id="@+id/futureListWeatherFragment"
+        android:name="com.devarthur.mvvmtemplate.ui.weather.future.list.FutureListWeather"
+        android:label="future_list_weather_fragment"
+        tools:layout="@layout/future_list_weather_fragment" />
     <fragment
         android:id="@+id/futureDetailWeatherFragment"
         android:name="com.devarthur.mvvmtemplate.ui.weather.future.detail.FutureDetailWeather"
