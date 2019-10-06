@@ -1,6 +1,6 @@
 package com.devarthur.mvvmtemplate.data
 
-import com.devarthur.mvvmtemplate.data.response.CurrentWeatherResponse
+import com.devarthur.mvvmtemplate.data.response.network.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -9,6 +9,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+
+
 
 
 const val API_KEY = "f2b8eb4d871f1e8eb89a27fd147a67cc"
@@ -44,8 +46,14 @@ interface ApixuWeatherApiService {
                 return@Interceptor chain.proceed(request)
             }
 
+
+
+//            val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+//                .addInterceptor(logger)
                 .build()
 
             return Retrofit.Builder()

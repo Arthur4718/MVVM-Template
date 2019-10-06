@@ -1,4 +1,4 @@
-package com.devarthur.mvvmtemplate.data.response
+package com.devarthur.mvvmtemplate.data.db.entity
 
 
 import com.google.gson.annotations.SerializedName
