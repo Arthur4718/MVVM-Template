@@ -1,6 +1,6 @@
-package com.devarthur.mvvmtemplate.data
+package com.devarthur.mvvmtemplate.data.network
 
-import com.devarthur.mvvmtemplate.data.response.network.CurrentWeatherResponse
+import com.devarthur.mvvmtemplate.data.network.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -28,14 +28,16 @@ interface ApixuWeatherApiService {
 
 
     companion object {
-        operator fun invoke()
+        operator fun invoke(connectivityInterceptorImpl: ConectivityInterceptor)
         : ApixuWeatherApiService {
             val requestInterceptor = Interceptor { chain ->
 
                 val url = chain.request()
                     .url()
                     .newBuilder()
-                    .addQueryParameter("access_key", API_KEY)
+                    .addQueryParameter("access_key",
+                        API_KEY
+                    )
                     .build()
 
                 val request = chain.request()
@@ -48,12 +50,9 @@ interface ApixuWeatherApiService {
 
 
 
-//            val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-
-
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
-//                .addInterceptor(logger)
+                .addInterceptor(connectivityInterceptorImpl)
                 .build()
 
             return Retrofit.Builder()

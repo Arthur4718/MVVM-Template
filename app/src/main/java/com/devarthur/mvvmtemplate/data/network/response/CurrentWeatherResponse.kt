@@ -1,4 +1,4 @@
-package com.devarthur.mvvmtemplate.data.response.network
+package com.devarthur.mvvmtemplate.data.network.response
 
 import com.devarthur.mvvmtemplate.data.db.entity.CurrentWeatherEntry
 import com.devarthur.mvvmtemplate.data.db.entity.Location
