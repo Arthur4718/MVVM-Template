@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.devarthur.mvvmtemplate.R
 import com.devarthur.mvvmtemplate.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.current_weather_fragment.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -55,6 +54,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     private fun bindUI() = launch{
         val currentWeather = viewModel.weather.await()
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
+            if(it == null) return@Observer
             textView.text = it.toString()
         })
     }

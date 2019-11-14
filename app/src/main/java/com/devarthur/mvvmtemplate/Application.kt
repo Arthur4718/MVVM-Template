@@ -6,6 +6,7 @@ import com.devarthur.mvvmtemplate.data.network.*
 import com.devarthur.mvvmtemplate.data.repository.ForecastRepository
 import com.devarthur.mvvmtemplate.data.repository.ForecastRepositoryImpl
 import com.devarthur.mvvmtemplate.ui.weather.current.CurrentWeatherViewModel
+import com.devarthur.mvvmtemplate.ui.weather.current.CurrentWeatherViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -25,7 +26,7 @@ class ForecastApplication : Application(), KodeinAware {
         bind() from singleton { ApixuWeatherApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
-        bind() from provider { CurrentWeatherViewModel(instance()) }
+        bind() from provider { CurrentWeatherViewModelFactory(instance())}
     }
     override fun onCreate() {
         super.onCreate()
